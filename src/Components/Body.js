@@ -32,21 +32,17 @@ const Body = () =>{
 
     return listOfRes.length === 0 ? <Shimmer /> :  (
         <div className="body">
-            <div className="search-container">
-                <input type="text" placeholder="Search" className="search-in" value={searchRes} onChange={(e)=>{
+            <div className="flex items-center justify-center mb-4 relative">
+                <input type="text" placeholder="Search" className="py-3 border pl-7 pr-12 rounded-3xl border-black border-solid" value={searchRes} onChange={(e)=>{
                     setSearchRes(e.target.value);
                 }}></input>
-                <i className="fa-solid fa-magnifying-glass search-icon" onClick={()=>{
-                    console.log(searchRes);
-                    const filteredCardList = listOfRes.filter((res) =>
-                        // console.log(res);
-                        res.info.name.toLowerCase().includes(searchRes.toLowerCase())
-                )
-                
-                setFilteredRes(filteredCardList);
-                }}></i>
+                <button className="p-3 absolute top-0 right-100" onClick={()=>{
+                    const filteredList = listOfRes.filter((res)=> 
+                    res.info.name.toLowerCase().includes(searchRes.toLowerCase()))
+                    setFilteredRes(filteredList);
+                }}><i class="fa-solid fa-magnifying-glass"></i></button>
                 <button 
-                className="top-btn" 
+                className="ml-5 border-solid border-black py-3 px-6 rounded-3xl border" 
                 onClick={() => {
                     let filteredList = listOfRes.filter(
                         (res1)=> res1.info.avgRating > 4.3
@@ -54,7 +50,7 @@ const Body = () =>{
                         setFilteredRes(filteredList);
                 }}>Top Rated Restaurants</button>
             </div>
-            <div className="restaurant-container">
+            <div className="flex flex-wrap pl-8">
                 {
                   filteredRes.map((res) =>(
                     <Link key={res.info.id} to={"/restaurants/"+res.info.id}><RestaurantCard resData={res}/></Link>

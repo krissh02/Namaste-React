@@ -16,27 +16,28 @@ const RestaurantMenu = () =>{
     console.log(itemCards);
     
     return (
-        <div className="res-menu">
-            <div className="res-info-cont">
+        <div className="w-3/6 mx-auto mt-4 p-4">
+            <div className="flex items-center justify-between border-b-2 border-dotted border-black pb-8">
                 <div className="res-info">
-                    <h1>{name}</h1>
-                    <p>{cuisines.join(",")}</p>
-                    <p>{areaName}</p>
+                    <h1 className="my-4 text-3xl">{name}</h1>
+                    <h2 className="text-2xl">{name}</h2>
+                    <p className="text-lg">{cuisines.join(",")}</p>
+                    <p className="text-lg">{areaName}</p>
                 </div>
-                <div className="res-rating">
-                    <h3>{avgRating}</h3>
+                <div className="border border-black border-solid rounded-lg py-5 mt-10">
+                    <h3 className="pb-3 border-b-2 border-solid border-black text-center">{avgRating}</h3>
                     <p>{totalRatingsString}</p>
                 </div>
             </div>
 
-            <h2 className="res-distance">{sla.deliveryTime} min , {costForTwoMessage}</h2>
-            <h1 className="menu-recommended">Recommended</h1>
+            <h2 className="my-4 text-lg font-medium">{sla.deliveryTime} min , {costForTwoMessage}</h2>
+            <h1 className="text-3xl mb-8">Recommended</h1>
             <div className="res-menu-items">
-                <div className="menu-details">
+                <div className="text-lg">
                     {itemCards.map((res)=> [
                         <h1>{res?.card?.info?.name}</h1>, 
                         <p>Rs. {res?.card?.info?.price/100 || res?.card?.info?.defaultPrice/100}</p>, 
-                        <p className="menu-content">{res?.card?.info?.description}</p>, 
+                        <p className="border-dotted border-black border-b-2 pb-7">{res?.card?.info?.description}</p>, 
                         // <img className="menu-img" src={MENU_IMG_URL+res?.card?.info?.imageId}></img>
                     ] 
                     ) }
