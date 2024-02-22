@@ -1,29 +1,20 @@
-import { useState, useEffect } from "react";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Shimmer from "./Shimmer";
 // import { MENU_IMG_URL } from "../utils/constant";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constant";
 
 const RestaurantMenu = () =>{
-
-    const [resItem,setResItem] = useState(null);
-    // console.log(resItem?.cards[0]?.card?.card?.info.name);
-
     const {resId} = useParams();
 
-    useEffect(()=>{
-        fetchMenu();
-    },[])
+    const resItem = useRestaurantMenu(resId);
+    console.log(resItem);
 
-    const fetchMenu = async () =>{
-        const data = await fetch(MENU_API+resId);
-        const json = await data.json();
-        console.log(json.data);
-        setResItem(json?.data)
-    }
     if(resItem === null) return <Shimmer />;
-    const {name,avgRating, totalRatingsString,costForTwoMessage,cuisines,sla,areaName} = resItem?.cards[0]?.card?.card?.info;
-    const {itemCards} = resItem?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+    
+    const {name,avgRating, totalRatingsString,costForTwoMessage,cuisines,sla,areaName} = resItem?.cards[2]?.card?.card?.info;
+    const {itemCards} = resItem?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+    console.log(itemCards);
+    
     return (
         <div className="res-menu">
             <div className="res-info-cont">
@@ -44,7 +35,7 @@ const RestaurantMenu = () =>{
                 <div className="menu-details">
                     {itemCards.map((res)=> [
                         <h1>{res?.card?.info?.name}</h1>, 
-                        <p>Rs. {res?.card?.info?.price/100}</p>, 
+                        <p>Rs. {res?.card?.info?.price/100 || res?.card?.info?.defaultPrice/100}</p>, 
                         <p className="menu-content">{res?.card?.info?.description}</p>, 
                         // <img className="menu-img" src={MENU_IMG_URL+res?.card?.info?.imageId}></img>
                     ] 

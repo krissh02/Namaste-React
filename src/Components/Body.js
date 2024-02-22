@@ -1,22 +1,21 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockList";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () =>{
     // Note - the useState hook is never used in the loops or funtions
     const [listOfRes,setOfResList] = useState([]);
     const [filteredRes,setFilteredRes] = useState([]);
     const [searchRes,setSearchRes] = useState("");
+    const onlineStatus = useOnlineStatus();
 
     // if no dependency array then the useeffect is called every component render
     // if the dependency array is there then the useEffect is called in the intial component render
     // if the dependency array contain some vairable then the useEffect will called only when that variable is updated 
     useEffect( ()=>{
         fetchData();
-        // postData("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/update",{})
-        // .then((data)=>console.log(data))
     },[]);
 
     const fetchData = async () =>{
@@ -28,28 +27,9 @@ const Body = () =>{
             setOfResList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
             setFilteredRes(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
-    // Example POST method implementation:
-    // const postData = async (url = "",data={}) => {
-    //     // Default options are marked with *
-    //     const response = await fetch(url, {
-    //         method: "POST", // *GET, POST, PUT, DELETE, etc.
-    //         mode: "cors", // no-cors, *cors, same-origin
-    //         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    //         credentials: "same-origin", // include, *same-origin, omit
-    //         headers: {
-    //         "Content-Type": "application/json",
-    //         // 'Content-Type': 'application/x-www-form-urlencoded',
-    //         },
-    //         redirect: "follow", // manual, *follow, error
-    //         referrerPolicy: "strict-origin-when-cross-origin", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    //         body: JSON.stringify(data), // body data type must match "Content-Type" header
-    //     });
-    //     return response.json();
-    // } 
-    // Conditional Rendering
-    // if(listOfRes.length === 0){
-    //     return <Shimmer />
-    // }
+
+    if(onlineStatus === false) return <h1>Looks like you are offline, Please check your internet connection</h1>
+
     return listOfRes.length === 0 ? <Shimmer /> :  (
         <div className="body">
             <div className="search-container">

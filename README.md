@@ -1,7 +1,11 @@
 
 # Namaste React 🚀
 
+<<<<<<< HEAD
 # Episode 1 - Inception
+=======
+##Episode 1 - Inception
+>>>>>>> c3563dc64d6ecc6caa6cbeaa81c3999015af3a7a
 1. What is Emmet?
 Emmet is a plugin or developer tool kit that helps make your work faster and substantially enhances HTML and CSS workflows.
 Emmet was created by Sergey Chikuyonok. The original name was "Zen Coding." Emmet is available for many editors including Atom, Eclipse, Emacs, Notepad++, Sublime, Vim, Visual Studio (VS) Code, and WebStorm. However, some implementations do not support all the defined snippets and actions.
@@ -12,7 +16,12 @@ Emmet was created by Sergey Chikuyonok. The original name was "Zen Coding." Emme
 6. What is diference between React and ReactDOMReact provides the tools and concepts to define component-based user interfaces, ReactDOM handles the task of rendering those interfaces in a web environment. 
 7. What is difference between react.development.js and react.production.js files via CDN?By default, React. js builds your project in development mode, which includes features like detailed error messages and debugging tools. However, when you're ready to deploy your application, it's important to build it in production mode to benefit from optimized performance and reduced bundle size.
 
+<<<<<<< HEAD
 # Episode 2 - Igniting our App
+=======
+##Episode 2 - Igniting our App
+
+>>>>>>> c3563dc64d6ecc6caa6cbeaa81c3999015af3a7a
 
 # Episode 3 - Laying The Foundation
 
