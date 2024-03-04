@@ -1,8 +1,9 @@
-import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import RestaurantCard, {withPromotedCard} from "./RestaurantCard";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () =>{
     // Note - the useState hook is never used in the loops or funtions
@@ -10,6 +11,11 @@ const Body = () =>{
     const [filteredRes,setFilteredRes] = useState([]);
     const [searchRes,setSearchRes] = useState("");
     const onlineStatus = useOnlineStatus();
+    const {setUserName} = useContext(UserContext);
+
+    const ResPromotedCard = withPromotedCard(RestaurantCard);
+
+    console.log(listOfRes);
 
     // if no dependency array then the useeffect is called every component render
     // if the dependency array is there then the useEffect is called in the intial component render
@@ -41,19 +47,25 @@ const Body = () =>{
                     res.info.name.toLowerCase().includes(searchRes.toLowerCase()))
                     setFilteredRes(filteredList);
                 }}><i class="fa-solid fa-magnifying-glass"></i></button>
-                <button 
-                className="ml-5 border-solid border-black py-3 px-6 rounded-3xl border" 
-                onClick={() => {
-                    let filteredList = listOfRes.filter(
-                        (res1)=> res1.info.avgRating > 4.3
-                        );
-                        setFilteredRes(filteredList);
-                }}>Top Rated Restaurants</button>
+                <div>
+                    <button 
+                    className="ml-5 border-solid border-black py-3 px-6 rounded-3xl border mr-4" 
+                    onClick={() => {
+                        let filteredList = listOfRes.filter(
+                            (res1)=> res1.info.avgRating > 4.3
+                            );
+                            setFilteredRes(filteredList);
+                    }}>Top Rated Restaurants</button>
+                </div>
+                <label>UserName: </label>
+                <input className="border border-black border-solid px-2 rounded-3xl py-2 mx-3" onChange={(e)=> setUserName(e.target.value)}></input>
             </div>
             <div className="flex flex-wrap pl-8">
                 {
                   filteredRes.map((res) =>(
-                    <Link key={res.info.id} to={"/restaurants/"+res.info.id}><RestaurantCard resData={res}/></Link>
+                    <Link key={res.info.id} to={"/restaurants/"+res.info.id}>
+                        {res.info.promoted ? <ResPromotedCard resData={res}/> : <RestaurantCard resData={res}/>}
+                    </Link>
                   ))
                 }
             </div>

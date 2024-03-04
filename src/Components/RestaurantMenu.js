@@ -1,19 +1,23 @@
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Shimmer from "./Shimmer";
-// import { MENU_IMG_URL } from "../utils/constant";
 import { useParams } from "react-router-dom";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () =>{
     const {resId} = useParams();
-
     const resItem = useRestaurantMenu(resId);
     console.log(resItem);
+    const [showIndex,setShowIndex] = useState(0);
 
     if(resItem === null) return <Shimmer />;
     
-    const {name,avgRating, totalRatingsString,costForTwoMessage,cuisines,sla,areaName} = resItem?.cards[2]?.card?.card?.info;
-    const {itemCards} = resItem?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-    console.log(itemCards);
+    const {name,avgRating, totalRatingsString,costForTwoMessage,cuisines,sla,areaName} = resItem?.cards[0]?.card?.card?.info;
+    // const {itemCards} = resItem?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+    // console.log(resItem?.cards[2]?.card?.card?.info);
+    const categories = resItem?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((res)=> 
+        res?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
+    // console.log(categories);
     
     return (
         <div className="w-3/6 mx-auto mt-4 p-4">
@@ -29,20 +33,13 @@ const RestaurantMenu = () =>{
                     <p>{totalRatingsString}</p>
                 </div>
             </div>
-
             <h2 className="my-4 text-lg font-medium">{sla.deliveryTime} min , {costForTwoMessage}</h2>
-            <h1 className="text-3xl mb-8">Recommended</h1>
-            <div className="res-menu-items">
-                <div className="text-lg">
-                    {itemCards.map((res)=> [
-                        <h1>{res?.card?.info?.name}</h1>, 
-                        <p>Rs. {res?.card?.info?.price/100 || res?.card?.info?.defaultPrice/100}</p>, 
-                        <p className="border-dotted border-black border-b-2 pb-7">{res?.card?.info?.description}</p>, 
-                        // <img className="menu-img" src={MENU_IMG_URL+res?.card?.info?.imageId}></img>
-                    ] 
-                    ) }
-                </div>
-            </div>
+            {categories.map((category,index) => 
+            <RestaurantCategory 
+            data={category.card.card} 
+            showItem={index === showIndex ? true : false}
+            setShowIndex= {()=> setShowIndex(index)}
+            />)}
         </div>
     )
 }

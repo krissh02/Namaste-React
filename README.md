@@ -66,3 +66,27 @@ Ans- SO whenever the useState variable is updated then that component will reren
    a. createBrowserRouter - which is used to create a route configuration
    b. RouterProvider - and after creating router configuration we have to configure this into app so that we can route
    c. We can show Custom Error page if the user will route some different name then we can show out Error Page and in that we can use the special hook called #useRouteError which gives the error information which we can use that info to showcase in our error page
+
+# Episode 8 - 
+
+# Episode 9 -
+
+# Episode 10 - Jo Dikhta hai, Wo bikta hai
+Here we learned about talwindcss
+
+# Episoe 11 - Data is the New oil
+1.Higher Order components - basically it is a fucntion which takes the component and gives the component
+2.Composition Component
+3.Controlled and uncontrolled component
+4.lifting the state
+5.Props Drilling
+6.Context Api
+
+# Episode 12 - Redux
+   - Install @reduxjs/toolkit and react-redux library
+   - Build the store
+   - Connect the store to our app
+   - Slice (cartSlice)
+   - dispatch(action)
+   - Selector
+Hw - learned about RTK query from redux toolkit
