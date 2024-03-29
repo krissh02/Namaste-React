@@ -21,7 +21,7 @@ const ItemList = ({items}) =>{
                     </div>
                     <div className="relative">
                         <img className="w-[118] h-[96] rounded-lg object-cover object-center" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/${res?.card?.info.imageId}`}></img>
-                        <button className="px-8 py-1 rounded-lg text-green-500 bg-white border-none absolute top-[75px] left-3 shadow-lg font-bold cursor-pointer" onClick={() => handleCartItem(res)}>Add+</button>
+                        <button className="px-6 py-1 rounded-lg text-green-500 bg-white border-none absolute top-[75px] left-3 shadow-lg font-bold cursor-pointer hover:bg-green-600 hover:text-white" onClick={() => handleCartItem(res)}>Add+</button>
                     </div>
                 </div>
             )

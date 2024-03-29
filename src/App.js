@@ -11,6 +11,7 @@ import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./reduxStore/appStore";
 import Cart from "./Components/Cart";
+import Footer from "./Components/Footer";
 
 
 // lazy loading
@@ -37,6 +38,7 @@ const AppLayout = () =>{
             <div className="app">
                 <Header />
                 <Outlet />
+                <Footer />
             </div>
         </UserContext.Provider>
       </Provider>

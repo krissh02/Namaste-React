@@ -90,3 +90,18 @@ Here we learned about talwindcss
    - dispatch(action)
    - Selector
 Hw - learned about RTK query from redux toolkit
+
+# Episode 13 - Testing
+1. Types of testing
+- Unit Testing
+- Integration Testing
+- End to End Testing (e2e)
+
+2. Setting up the Testing
+- Installed React testing library
+- Installed Jest
+- Installed babel dependencies
+- Configure babel
+- Configure Parcel to avoid conflicts and to disable the default babel configure
+- npx jest --init
+- Installed jsdom package
