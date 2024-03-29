@@ -48,7 +48,7 @@ const Body = () =>{
         <div className="body pt-28 relative">
             <div className="flex items-center justify-center mb-4 relative">
 
-                <input type="text" placeholder="Search" className="relative w-96 py-3 border pl-4 text-lg rounded-l-lg border-black border-solid placeholder:text-lg" value={searchRes} onChange={(e)=>{
+                <input type="text" placeholder="Search" className="relative w-96 py-3 border pl-4 text-base rounded-l-lg border-black border-solid placeholder:text-lg" value={searchRes} onChange={(e)=>{
                     setSearchRes(e.target.value);
                 }}></input>
 
@@ -60,7 +60,7 @@ const Body = () =>{
 
                 <div>
                     <button 
-                    className="ml-14 border-solid border-black py-3 px-6 rounded-lg border mr-4 font-bold text-lg hover:bg-black hover:text-white" 
+                    className="ml-14 border-solid border-black py-3 px-6 rounded-lg border mr-4 font-bold text-base hover:bg-black hover:text-white" 
                     onClick={() => {
                         let filteredList = listOfRes.filter(
                             (res1)=> res1.info.avgRating > 4.3
@@ -74,7 +74,7 @@ const Body = () =>{
             <div className="">
                 <WhatOnMind />
             </div>
-            <h1 className="mx-20 mb-4 text-3xl font-bold">Restaurants with online food delivery in Mumbai</h1>
+            <h1 className="mx-20 mb-4 text-2xl font-bold">Restaurants with online food delivery in Mumbai</h1>
             <div className="flex flex-wrap pl-8">
                 {
                   filteredRes.map((res) =>(

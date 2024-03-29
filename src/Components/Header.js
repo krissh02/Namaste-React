@@ -18,7 +18,7 @@ const Header = () =>{
                 <img src={LOGO_URL} className="w-22 h-20"></img>
             </div>
             <div className="nav-items">
-                <ul className="flex text-xl font-serif items-center">
+                <ul className="flex text-lg font-serif items-center">
                     <li className="mx-4 font-bold">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
                     <li className="mx-4 font-bold hover:text-green-600"><Link to="/">Home</Link></li>
                     {/* <li className="mx-4"><Link to="/about">About Us</Link></li>

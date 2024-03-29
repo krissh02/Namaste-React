@@ -6,7 +6,7 @@ const WhatOnMind = () => {
     const img = useSelector(store=> store?.img?.imgLogo);  
   return (
     <div className='px-10 border-b-2 mx-16 mb-10'>
-        <h1 className='text-3xl font-bold mb-4'>What's on your mind?</h1>
+        <h1 className='text-2xl font-bold mb-4'>What's on your mind?</h1>
         {/* <div className='flex overflow-x-scroll flex-nowrap scroll-smooth animate-infinite-scroll'>
             {
                 img?.map((i) => (
